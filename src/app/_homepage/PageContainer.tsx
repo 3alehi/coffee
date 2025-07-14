@@ -22,7 +22,7 @@ export default function PageContainer () {
 					<LandingSection />
 					<AboutSection />
 					<FeatureSection />
-					<LoginSection />
+					{/* <LoginSection /> */}
 					<FooterSection />
 				</div>
 			</div>

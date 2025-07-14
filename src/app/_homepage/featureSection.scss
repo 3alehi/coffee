@@ -1,115 +1,173 @@
 .featureSection {
-	position: relative;
-	width: 100vw;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 12rem 20px 12rem 80px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rem 5%;
+  gap: 2rem;
+  direction: rtl; // برای پشتیبانی از راست به چپ
 
-	.featuresContent {
-		width: 45%;
-		max-width: 550px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
+  .featuresContent {
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-		h2 {
-			width: fit-content;
-			font-size: 32px;
-			font-variation-settings: 'wdth' 75, 'wght' 500;
-			text-transform: uppercase;
-			user-select: none;
-			margin-bottom: 20px;
+    h2 {
+      width: fit-content;
+      font-size: clamp(1.75rem, 3vw, 2rem);
+      font-weight: 600;
+      text-align: right;
+      user-select: none;
+      margin-bottom: 2rem;
+      position: relative;
 
-			&::after {
-				content: '';
-				display: block;
-				width: 40%;
-				height: 5px;
-				margin: 15px auto;
-				background-color: hsl(var(--colorBrandPrimary));
-			}
-		}
+      &::after {
+        content: '';
+        display: block;
+        width: 50%;
+        height: 4px;
+        margin: 1rem 0;
+        background-color: hsl(var(--colorBrandPrimary));
+        border-radius: 2px;
+      }
+    }
 
-		.featureListItem {
-			width: 100%;
-			display: flex;
-			align-items: center;
-			margin: 5px 0;
+    .featureListItem {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+      transition: transform 0.3s ease;
 
-			h1 {
-				width: 60px;
-				min-width: 60px;
-				height: 60px;
-				min-height: 60px;
-				margin: 0 20px 0 0;
-				border-radius: 9999px;
-				font-size: 32px;
-				font-variation-settings: 'wdth' 75, 'wght' 500;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				user-select: none;
-				background-color: var(--lightFeatureColor);
-				color: var(--darkFeatureColor);
-				transition: background-color 0.5s ease-out, color 0.5s ease-out;
-			}
+      &:hover {
+        transform: translateX(-5px);
+      }
 
-			p {
-				font-size: 16px;
-				font-variation-settings: 'wdth' 75, 'wght' 300;;
-				margin: 0;
+      h1 {
+        width: 3.5rem;
+        min-width: 3.5rem;
+        height: 3.5rem;
+        min-height: 3.5rem;
+        margin-left: 1rem;
+        margin-right: 0;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        background-color: var(--lightFeatureColor);
+        color: var(--darkFeatureColor);
+        transition: all 0.3s ease;
+      }
 
-				&::selection {
-					color: var(--darkFeatureColor);
-					background: var(--lightFeatureColor);
-				}
-			}
-		}
-	}
+      p {
+        font-size: clamp(0.9rem, 1.25vw, 1rem);
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 0;
+        text-align: right;
 
-	.featuresAnim {
-		width: 55%;
-		height: 100%;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
+        &::selection {
+          color: var(--darkFeatureColor);
+          background: var(--lightFeatureColor);
+        }
+      }
+    }
+  }
 
-		.whyUsAnim {
-			width: 100%;
-			height: auto;
-			max-width: 600px;
-			max-height: 600px;
-		}
-	}
+  .featuresAnim {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .whyUsAnim {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+    }
+  }
 }
 
-@media (width <= 910px) {
-	.featureSection  .featuresContent .featureListItem > p {
-		font-size: 14px;
-	}
+// ریسپانسیو برای تبلت
+@media (width <= 1024px) {
+  .featureSection {
+    padding: 6rem 5%;
+    
+    .featuresContent {
+      width: 55%;
+    }
+    
+    .featuresAnim {
+      max-width: 500px;
+    }
+  }
 }
 
-@media (width <= 830px) {
-	.featureSection  {
-		padding: 0 50px;
-		justify-content: center;
+// ریسپانسیو برای موبایل
+@media (width <= 768px) {
+  .featureSection {
+    flex-direction: column;
+    padding: 4rem 5%;
+    gap: 3rem;
 
-		.featuresContent {
-			width: fit-content;
-			max-width: unset;
-			align-items: center;
-		}
+    .featuresContent {
+      width: 100%;
+      align-items: center;
+      
+      h2 {
+        text-align: center;
+        
+        &::after {
+          margin: 1rem auto;
+        }
+      }
+      
+      .featureListItem {
+        width: 100%;
+        max-width: 500px;
+        
+        p {
+          text-align: right;
+        }
+      }
+    }
 
-		.featuresAnim {
-			display: none;
-		}
-	}
+    .featuresAnim {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
 }
 
-@media (width <= 530px) {
-	.featureSection  {
-		padding: 0 30px;
-	}
+// ریسپانسیو برای موبایل‌های کوچک
+@media (width <= 480px) {
+  .featureSection {
+    padding: 3rem 5%;
+    
+    .featuresContent {
+      .featureListItem {
+        h1 {
+          width: 3rem;
+          min-width: 3rem;
+          height: 3rem;
+          min-height: 3rem;
+          font-size: 1.25rem;
+        }
+        
+        p {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
 }

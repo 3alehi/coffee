@@ -1,154 +1,158 @@
 .landingSection {
-	position: relative;
-	width: 100dvw;
-	height: 100dvh;
-	background-image: url('/backgrounds/landingCoverPlaceholder.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	transition: filter 1s linear;
-	
-	.coverBackground, .coverOverlay {
-		position: absolute;
-		left: 0; top: 0;
-		width: 100%;
-		height: 100%;
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		transition: background-position 1s ease-out;
-		transition: filter var(--animDurDefault) var(--cubicBezierPrimary);
-	}
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+  min-height: 600px;
+  overflow: hidden;
+  background-image: url('/backgrounds/landingCoverPlaceholder.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: filter 0.5s ease;
+  
+  .coverBackground, .coverOverlay {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease;
+  }
 
-	&.dark {
-		.coverBackground, .coverOverlay {
-			filter: brightness(0.3) contrast(1.2) saturate(0.9);
-		}
-	}
+  &.dark {
+    .coverBackground, .coverOverlay {
+      filter: brightness(0.3) contrast(1.2) saturate(0.9);
+    }
+  }
 
-	.overlay {
-		position: absolute;
-		left: 0; top: 0;
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-		pointer-events: none;
-		background-image: linear-gradient(to right, var(--colorBackgroundPrimary) 0%, transparent 100%);
-		transition: opacity 1s ease-out;
-	}
+  .overlay {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(var(--colorBackgroundPrimary-rgb), 0.9) 0%, transparent 50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
 
-	.landingGreeting {
-		position: absolute;
-		right: 0;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		padding-right: 90px;
-		user-select: none;
-		pointer-events: none;
-		transition: zoom 1s ease-out;
+  .landingGreeting {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 0 5%;
+    user-select: none;
+    z-index: 1;
 
-		> p {
-			width: 100%;
-			font-size: 32px;
-			font-variation-settings: 'wdth' 75, 'wght' 300;;
-			margin: 0;
-			text-align: end;
+    > * {
+      width: 100%;
+      margin: 0;
+      text-align: right;
+      color: var(--colorContentPrimary);
+    }
 
-			&.head {
-				font-size: 52px;
-				font-variation-settings: 'wdth' 75, 'wght' 400;
-			}
+    .head {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
 
-			&.subHead {
-				margin-bottom: 20px;
-			}
+    .subHead {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
 
-			&.desc {
-				font-size: 14px;
-				font-variation-settings: 'wdth' 75, 'wght' 400;;
-			}
-		}
+    .descWrapper {
+      margin-bottom: 2rem;
+    }
 
-		.greetingAction {
-			width: 100%;
-			display: flex;
-			margin: 40px 0 20px;
-			gap: 16px;
-			justify-content: flex-end;
-			pointer-events: all;
-		}
-	}
+    .desc {
+      font-size: clamp(0.875rem, 1.25vw, 1rem);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .greetingAction {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      pointer-events: all;
+    }
+  }
 }
 
-@media (width <= 1000px) {
-	.landingSection .landingGreeting {
-		zoom: 0.9;
-	}
+// ریسپانسیو برای تبلت
+@media (width <= 1024px) {
+  .landingSection {
+    .landingGreeting {
+      width: 60%;
+      padding-right: 3rem;
+    }
+  }
 }
 
-@media (width <= 850px) {
-	.landingSection .landingGreeting {
-		zoom: 0.8;
-	}
+// ریسپانسیو برای موبایل
+@media (width <= 768px) {
+  .landingSection {
+    .overlay {
+      opacity: 0.7;
+      background: linear-gradient(to bottom, rgba(var(--colorBackgroundPrimary-rgb), 0.9) 0%, transparent 100%);
+    }
+
+    .landingGreeting {
+      width: 100%;
+      align-items: center;
+      padding: 0 1.5rem;
+      text-align: center;
+
+      > * {
+        text-align: center;
+      }
+
+      .greetingAction {
+        justify-content: center;
+      }
+    }
+  }
 }
 
-@media (width <= 700px) {
-	.landingSection {
-		.overlay {
-			opacity: 0.5;
-		}
+// ریسپانسیو برای موبایل‌های کوچک
+@media (width <= 480px) {
+  .landingSection {
+    min-height: 700px;
+    
+    .overlay {
+      opacity: 0.9;
+    }
 
-		.landingGreeting {
-			zoom: 0.9;
-		}
-	}
-}
+    .landingGreeting {
+      padding: 0 1rem;
+      
+      .head {
+        margin-bottom: 0.5rem;
+      }
 
-@media (width <= 530px) {
-	.landingSection {
-		.coverBackground, .coverOverlay {
-			background-position: -140px;
-		}
+      .subHead {
+        margin-bottom: 1rem;
+      }
 
-		.overlay {
-			opacity: 0.92;
-			background-image: linear-gradient(to right, var(--colorBackgroundPrimary) 0%, var(--colorBackgroundPrimary) 100%);
-		}
+      .descWrapper {
+        margin-bottom: 1.5rem;
+      }
 
-		.landingGreeting {
-			right: 50%;
-			transform: translateX(50%);
-			padding-right: 0;
-			zoom: 1;
-
-			> p {
-				text-align: center;
-			}
-
-			.greetingAction {
-				justify-content: center;
-			}
-		}
-	}
-}
-
-@media (width <= 500px) {
-	.landingSection .landingGreeting {
-		zoom: 0.8;
-	}
-}
-
-@media (width <= 380px) {
-	.landingSection .landingGreeting {
-		zoom: 0.7;
-	}
-}
-
-@media (width <= 330px) {
-	.landingSection .landingGreeting {
-		zoom: 0.6;
-	}
+      .greetingAction {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+      }
+    }
+  }
 }
